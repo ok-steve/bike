@@ -18,7 +18,6 @@ define([
         },
 
         render: function () {
-            console.log(this.model.get('high'));
             $('body').removeClass('yes no maybe').addClass(this.answer());
 
             this.$el.html(this.template({ answer: this.answer() }));

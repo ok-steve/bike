@@ -3,14 +3,15 @@
 define([
     'underscore',
     'backbone',
+    'config',
     'models/forecast'
-], function (_, Backbone, ForecastModel) {
+], function (_, Backbone, config, ForecastModel) {
     'use strict';
 
     var ForecastCollection = Backbone.Collection.extend({
         model: ForecastModel,
 
-        url: 'api/forecast.json',
+        url: config.url(),
 
         parse: function (response) {
             return response.hourly.data;
