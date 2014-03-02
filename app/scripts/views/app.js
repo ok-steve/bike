@@ -18,7 +18,7 @@ define([
         },
 
         render: function () {
-            $(this.el).html(this.template());
+            $(this.el).html(this.template({ high: this.collection.high(), low: this.collection.low(), precip: this.collection.precip() }));
 
             return this;
         }
