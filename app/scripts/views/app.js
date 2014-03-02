@@ -18,6 +18,7 @@ define([
         },
 
         render: function () {
+            console.log(this.model.get('high'));
             $('body').removeClass('yes no maybe').addClass(this.answer());
 
             this.$el.html(this.template({ answer: this.answer() }));
@@ -26,9 +27,9 @@ define([
         },
 
         answer: function () {
-            if (this.collection.high() <= 90 && this.collection.low() >= 50 && this.collection.precip() <= 10) {
+            if (this.collection.high() <= this.model.get('high') && this.collection.low() >= this.model.get('low') && this.collection.precip() <= this.model.get('precip')) {
                 return 'yes';
-            } else if (this.collection.high() <= 90 + 10 && this.collection.low() >= 50 - 10 && this.collection.precip() <= 10 + 10) {
+            } else if (this.collection.high() <= this.model.get('high') + this.model.get('offset') && this.collection.low() >= this.model.get('low') - this.model.get('offset') && this.collection.precip() <= this.model.get('precip') + this.model.get('offset')) {
                 return 'maybe';
             } else {
                 return 'no';

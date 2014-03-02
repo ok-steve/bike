@@ -4,8 +4,9 @@ define([
     'jquery',
     'backbone',
     'views/app',
-    'collections/forecast'
-], function ($, Backbone, AppView, ForecastCollection) {
+    'collections/forecast',
+    'models/preference'
+], function ($, Backbone, AppView, ForecastCollection, PreferenceModel) {
     'use strict';
 
     var AppRouter = Backbone.Router.extend({
@@ -13,10 +14,11 @@ define([
         },
 
         initialize: function () {
-            var forecast = new ForecastCollection();
+            var forecast = new ForecastCollection(),
+                preference = new PreferenceModel();
 
             forecast.fetch({ success: function () {
-                var app = new AppView({ collection: forecast });
+                var app = new AppView({ collection: forecast, model: preference });
             }});
         }
     });
