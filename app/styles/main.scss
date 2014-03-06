@@ -1,3 +1,8 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 @import 'sass-bootstrap/lib/bootstrap';
+
+.jumbotron h1 {
+    text-align: center;
+    text-transform: capitalize;
+}
