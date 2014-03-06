@@ -4,14 +4,21 @@ define([
     'underscore',
     'backbone',
     'config',
-    'models/forecast'
-], function (_, Backbone, config, ForecastModel) {
+    'models/forecast',
+    'models/location'
+], function (_, Backbone, config, ForecastModel, LocationModel) {
     'use strict';
 
     var ForecastCollection = Backbone.Collection.extend({
         model: ForecastModel,
 
-        url: config.url(),
+        initialize: function () {
+            this.location = new LocationModel();
+        },
+
+        url: function () {
+            return 'https://api.forecast.io/forecast' + '/' + config.API_KEY + '/' + this.location.get('latitude') + ',' + this.location.get('longitude') + '?callback=?';
+        },
 
         parse: function (response) {
             return response.hourly.data;
