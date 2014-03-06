@@ -1,8 +1,43 @@
-$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+@import "sass-bootstrap/lib/variables";
+@import "sass-bootstrap/lib/mixins";
+@import "sass-bootstrap/lib/normalize";
+@import "sass-bootstrap/lib/scaffolding";
+@import "sass-bootstrap/lib/type";
+@import "sass-bootstrap/lib/grid";
+@import "sass-bootstrap/lib/forms";
+@import "sass-bootstrap/lib/buttons";
+@import "sass-bootstrap/lib/component-animations";
+@import "sass-bootstrap/lib/navbar";
+@import "sass-bootstrap/lib/jumbotron";
 
-@import 'sass-bootstrap/lib/bootstrap';
-
+.navbar-brand,
 .jumbotron h1 {
-    text-align: center;
-    text-transform: capitalize;
+    font-family: 'Sansita One', $font-family-sans-serif;
+}
+
+.jumbotron {
+    h1 {
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    .yes &,
+    .maybe &,
+    .no & {
+        h1 {
+            color: #fff;
+        }
+    }
+
+    .yes & {
+        background-color: $brand-success;
+    }
+
+    .maybe & {
+        background-color: $brand-warning;
+    }
+
+    .no & {
+        background-color: $brand-danger;
+    }
 }
