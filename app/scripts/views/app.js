@@ -4,8 +4,10 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'templates'
-], function ($, _, Backbone, JST) {
+    'templates',
+    'collections/forecast',
+    'models/preference'
+], function ($, _, Backbone, JST, ForecastCollection, PreferenceModel) {
     'use strict';
 
     var AppView = Backbone.View.extend({
@@ -14,13 +16,20 @@ define([
         template: JST['app/scripts/templates/app.hbs'],
 
         initialize: function () {
-            this.render();
+            this.collection = new ForecastCollection();
+            this.model = new PreferenceModel();
         },
 
         render: function () {
-            $('body').removeClass('yes no maybe').addClass(this.answer());
+            var self = this;
 
-            this.$el.html(this.template({ answer: this.answer() }));
+            this.collection.fetch({
+                success: function () {
+                    $('body').removeClass('yes no maybe').addClass(self.answer());
+
+                    $(self.el).html(self.template({ answer: self.answer() }));
+                }
+            });
 
             return this;
         },
