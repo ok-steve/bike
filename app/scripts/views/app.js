@@ -5,10 +5,9 @@ define([
     'underscore',
     'backbone',
     'templates',
-    'collections/forecast',
     'models/preference',
     'bootstrap'
-], function ($, _, Backbone, JST, ForecastCollection, PreferenceModel) {
+], function ($, _, Backbone, JST, PreferenceModel) {
     'use strict';
 
     var AppView = Backbone.View.extend({
@@ -21,25 +20,13 @@ define([
         },
 
         initialize: function () {
-            this.collection = new ForecastCollection();
             this.model = new PreferenceModel();
 
-            this.listenTo(this.model, 'change', this.reRender);
+            this.listenToOnce(this.collection, 'reset', this.render);
+            this.listenTo(this.model, 'change', this.render);
         },
 
         render: function () {
-            var self = this;
-
-            this.collection.fetch({
-                success: function () {
-                    self.reRender();
-                }
-            });
-
-            return this;
-        },
-
-        reRender: function () {
             var ans = this.answer();
 
             this.model.set({ 'answer': ans });

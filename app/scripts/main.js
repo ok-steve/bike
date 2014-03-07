@@ -32,8 +32,15 @@ require.config({
 
 require([
     'backbone',
-    'routes/app'
-], function (Backbone, AppRouter) {
-    window.app = new AppRouter();
+    'collections/forecast',
+    'models/location',
+    'views/app'
+], function (Backbone, ForecastCollection, LocationModel, AppView) {
+    var place = new LocationModel(),
+        forecast = new ForecastCollection({ location: place }),
+        app = new AppView({ collection: forecast });
+
+    place.load();
+
     Backbone.history.start();
 });

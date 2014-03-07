@@ -4,16 +4,21 @@ define([
     'underscore',
     'backbone',
     'config',
-    'models/forecast',
-    'models/location'
-], function (_, Backbone, config, ForecastModel, LocationModel) {
+    'models/forecast'
+], function (_, Backbone, config, ForecastModel) {
     'use strict';
 
     var ForecastCollection = Backbone.Collection.extend({
         model: ForecastModel,
 
-        initialize: function () {
-            this.location = new LocationModel();
+        initialize: function (options) {
+            this.location = options.location;
+
+            this.listenToOnce(this.location, 'change', this.load);
+        },
+
+        load: function () {
+            return this.fetch({ reset: true });
         },
 
         url: function () {

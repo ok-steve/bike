@@ -3,7 +3,11 @@ define([
 
 function () {
     var config = {
-        API_KEY: ''
+        API_KEY: '',
+
+        LATITUDE: '',
+
+        LONGITUDE: ''
     };
 
     return config;
