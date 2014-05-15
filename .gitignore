@@ -6,4 +6,3 @@ app/bower_components
 .tmp
 test/bower_components/
 config.js
-**/*.json

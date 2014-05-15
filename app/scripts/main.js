@@ -3,16 +3,6 @@
 
 require.config({
     shim: {
-        underscore: {
-            exports: '_'
-        },
-        backbone: {
-            deps: [
-                'underscore',
-                'jquery'
-            ],
-            exports: 'Backbone'
-        },
         bootstrap: {
             deps: ['jquery'],
             exports: 'jquery'
@@ -22,7 +12,7 @@ require.config({
         }
     },
     paths: {
-        jquery: '../bower_components/jquery/jquery',
+        jquery: '../bower_components/jquery/dist/jquery',
         backbone: '../bower_components/backbone/backbone',
         underscore: '../bower_components/underscore/underscore',
         bootstrap: '../bower_components/sass-bootstrap/dist/js/bootstrap',
@@ -32,15 +22,9 @@ require.config({
 
 require([
     'backbone',
-    'collections/forecast',
-    'models/location',
-    'views/app'
-], function (Backbone, ForecastCollection, LocationModel, AppView) {
-    var place = new LocationModel(),
-        forecast = new ForecastCollection({ location: place }),
-        app = new AppView({ collection: forecast });
-
-    place.load();
-
+    'app',
+    'bootstrap'
+], function (Backbone, App) {
     Backbone.history.start();
+    App.start();
 });

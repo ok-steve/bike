@@ -12,17 +12,12 @@ define([
         model: ForecastModel,
 
         initialize: function (options) {
-            this.location = options.location;
-
-            this.listenToOnce(this.location, 'change', this.load);
-        },
-
-        load: function () {
-            return this.fetch({ reset: true });
+            this.latitude = options.latitude;
+            this.longitude = options.longitude;
         },
 
         url: function () {
-            return 'https://api.forecast.io/forecast' + '/' + config.API_KEY + '/' + this.location.get('latitude') + ',' + this.location.get('longitude') + '?callback=?';
+            return 'https://api.forecast.io/forecast' + '/' + config.API_KEY + '/' + this.latitude + ',' + this.longitude + '?callback=?';
         },
 
         parse: function (response) {

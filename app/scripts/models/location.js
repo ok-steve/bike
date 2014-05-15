@@ -3,14 +3,27 @@
 define([
     'underscore',
     'backbone',
-    'config'
-], function (_, Backbone, config) {
+    'config',
+    'utils'
+], function (_, Backbone, config, Utils) {
     'use strict';
 
     var LocationModel = Backbone.Model.extend({
+        url: '',
+
+        initialize: function() {
+        },
+
         defaults: {
             latitude: config.LATITUDE,
             longitude: config.LONGITUDE
+        },
+
+        validate: function(attrs, options) {
+        },
+
+        parse: function(response, options)  {
+            return response;
         },
 
         load: function () {
@@ -48,7 +61,7 @@ define([
                     silent: true
                 });
 
-                this.trigger('change');
+                Utils.vent.trigger('location:loaded');
             } else {
                 this.set({
                     'latitude': latitude,
