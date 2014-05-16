@@ -1,10 +1,39 @@
-<label for="high">High</label>
-<input type="number" name="high" id="high" class="form-control" min="0" max="100" value="{{high}}" placeholder="High">
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+        <div class="form-group">
+            <label for="high">High</label>
+            <div class="input-group">
+                <input type="number" name="high" id="high" class="form-control" min="0" max="100" value="{{high}}" placeholder="High">
+                <span class="input-group-addon">&deg;</span>
+            </div>
+        </div>
 
-<label for="low">Low</label>
-<input type="number" name="low" id="low" class="form-control" min="0" max="100" value="{{low}}" placeholder="Low">
+        <div class="form-group">
+            <label for="low">Low</label>
+            <div class="input-group">
+                <input type="number" name="low" id="low" class="form-control" min="0" max="100" value="{{low}}" placeholder="Low">
+                <span class="input-group-addon">&deg;</span>
+            </div>
+        </div>
 
-<label for="precip">Precipitation</label>
-<input type="number" name="precip" id="precip" class="form-control" min="0" max="100" value="{{precip}}" placeholder="Precip">
+        <div class="form-group">
+            <label for="precip">Precipitation</label>
+            <div class="input-group">
+                <input type="number" name="precip" id="precip" class="form-control" min="0" max="100" value="{{precip}}" placeholder="Precip">
+                <span class="input-group-addon">%</span>
+            </div>
+        </div>
 
-<button id="submit" class="btn btn-primary js-submit">Submit</button>
+        <div class="form-group">
+            <label for="offset">Offset</label>
+            <input type="number" name="offset" id="offset" class="form-control" min="1" max="" value="{{offset}}" placeholder="Offset">
+        </div>
+
+        <div class="form-group">
+            <label for="future">Hours offset</label>
+            <input type="number" name="future" id="future" class="form-control" min="1" max="24" value="{{future}}" placeholder="Hours offset">
+        </div>
+
+        <button id="submit" class="btn btn-primary js-submit">Submit</button>
+    </div>
+</div>
