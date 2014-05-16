@@ -17,7 +17,7 @@ define([
         },
 
         url: function () {
-            return 'https://api.forecast.io/forecast' + '/' + config.API_KEY + '/' + this.latitude + ',' + this.longitude + '?callback=?';
+            return 'https://api.forecast.io/forecast' + '/' + config.API_KEY + '/' + this.latitude + ',' + this.longitude + '?exclude=currently,minutely,daily,alerts,flags&callback=?';
         },
 
         parse: function (response) {
