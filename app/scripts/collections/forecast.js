@@ -41,7 +41,7 @@ define([
         },
 
         precip: function () {
-            return this.compare('max', 'precipProbability');
+            return this.compare('max', 'precipProbability') * 100;
         }
     });
 

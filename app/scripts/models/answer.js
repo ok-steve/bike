@@ -15,7 +15,9 @@ define([
         defaults: {
             high: 90,
             low: 50,
-            precip: 10
+            precip: 10,
+            offset: 10,
+            future: 2
         },
 
         validate: function(attrs, options) {
@@ -27,11 +29,11 @@ define([
 
         decide: function (data) {
             if (data.high() <= this.get('high') && data.low() >= this.get('low') && data.precip() <= this.get('precip')) {
-                this.set({ 'answer': 'yes' });
+                this.set({ answer: 'yes' });
             } else if (data.high() <= this.get('high') + this.get('offset') && data.low() >= this.get('low') - this.get('offset') && data.precip() <= this.get('precip') + this.get('offset')) {
-                this.set({ 'answer': 'maybe' });
+                this.set({ answer: 'maybe' });
             } else {
-                this.set({ 'answer': 'no' });
+                this.set({ answer: 'no' });
             }
         }
     });

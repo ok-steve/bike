@@ -40,6 +40,8 @@ define([
             prefs.high = $('#high').val();
             prefs.low = $('#low').val();
             prefs.precip = $('#precip').val();
+            prefs.offset = $('#offset').val();
+            prefs.future = $('#future').val();
 
             this.model.set(prefs);
 
