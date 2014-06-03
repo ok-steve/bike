@@ -24,6 +24,11 @@ define([
             return response.hourly.data;
         },
 
+        limit: function (size) {
+            var results = this.first(size);
+            return new ForecastCollection(results);
+        },
+
         compare: function (method, attribute) {
             var m = this[method](function (model) {
                 return model.get(attribute);

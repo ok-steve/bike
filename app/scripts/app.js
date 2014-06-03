@@ -48,7 +48,9 @@ function ($, Backbone, Utils, AppRouter, AnswerModel, ForecastCollection, Locati
     Utils.vent.on('answer:show', function () {
         Backbone.history.navigate('');
 
-        App.answer.decide(App.forecast);
+        var filteredCollection = App.forecast.limit(App.answer.get('limit'));
+
+        App.answer.decide(filteredCollection);
 
         require(['views/answer/show'], function (AnswerShowView) {
             var answerShowView = new AnswerShowView({ model: App.answer });

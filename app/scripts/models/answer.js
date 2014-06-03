@@ -17,7 +17,7 @@ define([
             low: 50,
             precip: 10,
             offset: 10,
-            future: 2
+            limit: 8
         },
 
         validate: function(attrs, options) {

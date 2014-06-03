@@ -37,11 +37,11 @@ define([
 
             var prefs = {};
 
-            prefs.high = $('#high').val();
-            prefs.low = $('#low').val();
-            prefs.precip = $('#precip').val();
-            prefs.offset = $('#offset').val();
-            prefs.future = $('#future').val();
+            prefs.high = parseInt($('#high').val());
+            prefs.low = parseInt($('#low').val());
+            prefs.precip = parseInt($('#precip').val());
+            prefs.offset = parseInt($('#offset').val());
+            prefs.limit = parseInt($('#limit').val());
 
             this.model.set(prefs);
 
