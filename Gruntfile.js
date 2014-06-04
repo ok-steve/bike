@@ -32,34 +32,26 @@ module.exports = function (grunt) {
                 nospawn: true,
                 livereload: true
             },
-            coffee: {
-                files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
-                tasks: ['coffee:dist']
-            },
-            coffeeTest: {
-                files: ['test/spec/{,*/}*.coffee'],
-                tasks: ['coffee:test']
-            },
             compass: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
                 tasks: ['compass']
             },
             livereload: {
                 options: {
-                    livereload: LIVERELOAD_PORT
+                    livereload: grunt.option('livereloadport') || LIVERELOAD_PORT
                 },
                 files: [
                     '<%= yeoman.app %>/*.html',
                     '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
                     '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
-                    '<%= yeoman.app %>/scripts/templates/*.{ejs,mustache,hbs}',
+                    '<%= yeoman.app %>/scripts/templates/**/*.{ejs,mustache,hbs}',
                     'test/spec/**/*.js'
                 ]
             },
             handlebars: {
                 files: [
-                    '<%= yeoman.app %>/scripts/templates/*.hbs'
+                    '<%= yeoman.app %>/scripts/templates/**/*.hbs'
                 ],
                 tasks: ['handlebars']
             },
@@ -70,7 +62,7 @@ module.exports = function (grunt) {
         },
         connect: {
             options: {
-                port: SERVER_PORT,
+                port: grunt.option('port') || SERVER_PORT,
                 // change this to '0.0.0.0' to access the server from outside
                 hostname: '0.0.0.0'
             },
@@ -136,30 +128,8 @@ module.exports = function (grunt) {
             all: {
                 options: {
                     run: true,
-                    urls: ['http://localhost:<%= connect.test.options.port %>/index.html']
+                    src: ['http://localhost:<%= connect.test.options.port %>/index.html']
                 }
-            }
-        },
-        coffee: {
-            dist: {
-                files: [{
-                    // rather than compiling multiple files here you should
-                    // require them into your main .coffee file
-                    expand: true,
-                    cwd: '<%= yeoman.app %>/scripts',
-                    src: '{,*/}*.coffee',
-                    dest: '.tmp/scripts',
-                    ext: '.js'
-                }]
-            },
-            test: {
-                files: [{
-                    expand: true,
-                    cwd: 'test/spec',
-                    src: '{,*/}*.coffee',
-                    dest: '.tmp/spec',
-                    ext: '.js'
-                }]
             }
         },
         compass: {
@@ -187,9 +157,9 @@ module.exports = function (grunt) {
                     optimize: 'none',
                     paths: {
                         'templates': '../../.tmp/scripts/templates',
-                        'jquery': '../../app/bower_components/jquery/jquery',
-                        'underscore': '../../app/bower_components/underscore/underscore',
-                        'backbone': '../../app/bower_components/backbone/backbone'
+                        'jquery': '../../<%= yeoman.app %>/bower_components/jquery/dist/jquery',
+                        'underscore': '../../<%= yeoman.app %>/bower_components/underscore/underscore',
+                        'backbone': '../../<%= yeoman.app %>/bower_components/backbone/backbone'
                     },
                     // TODO: Figure out how to make sourcemaps work with grunt-usemin
                     // https://github.com/yeoman/grunt-usemin/issues/30
@@ -285,7 +255,7 @@ module.exports = function (grunt) {
                     amd: true
                 },
                 files: {
-                    '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/*.hbs']
+                    '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/**/*.hbs']
                 }
             }
         },
@@ -308,9 +278,9 @@ module.exports = function (grunt) {
         grunt.file.write('.tmp/scripts/templates.js', 'this.JST = this.JST || {};');
     });
 
-    grunt.registerTask('server', function () {
+    grunt.registerTask('server', function (target) {
         grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-        grunt.task.run(['serve:' + target]);
+        grunt.task.run(['serve' + (target ? ':' + target : '')]);
     });
 
     grunt.registerTask('serve', function (target) {
@@ -321,24 +291,22 @@ module.exports = function (grunt) {
         if (target === 'test') {
             return grunt.task.run([
                 'clean:server',
-                'coffee',
                 'createDefaultTemplate',
                 'handlebars',
                 'compass:server',
                 'connect:test',
                 'open:test',
-                'watch:livereload'
+                'watch'
             ]);
         }
 
         grunt.task.run([
             'clean:server',
-            'coffee:dist',
             'createDefaultTemplate',
             'handlebars',
             'compass:server',
             'connect:livereload',
-            'open:server',
+            //'open:server',
             'watch'
         ]);
     });
@@ -347,13 +315,11 @@ module.exports = function (grunt) {
         isConnected = Boolean(isConnected);
         var testTasks = [
                 'clean:server',
-                'coffee',
                 'createDefaultTemplate',
                 'handlebars',
                 'compass',
                 'connect:test',
                 'mocha',
-                'watch:test'
             ];
 
         if(!isConnected) {
@@ -367,7 +333,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
-        'coffee',
         'createDefaultTemplate',
         'handlebars',
         'compass:dist',

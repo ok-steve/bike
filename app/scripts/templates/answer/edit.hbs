@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+        <div class="form-group">
+            <label for="high">High</label>
+            <div class="input-group">
+                <input type="number" name="high" id="high" class="form-control" min="0" max="100" value="{{high}}" placeholder="High">
+                <span class="input-group-addon">&deg;</span>
+            </div>
+            <p class="help-block">The hottest temperature you&rsquo;re willing to ride in.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="low">Low</label>
+            <div class="input-group">
+                <input type="number" name="low" id="low" class="form-control" min="0" max="100" value="{{low}}" placeholder="Low">
+                <span class="input-group-addon">&deg;</span>
+            </div>
+            <p class="help-block">The coldest temperature you&rsquo;re willing to ride in.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="precip">Precipitation</label>
+            <div class="input-group">
+                <input type="number" name="precip" id="precip" class="form-control" min="0" max="100" value="{{precip}}" placeholder="Precip">
+                <span class="input-group-addon">%</span>
+            </div>
+            <p class="help-block">The highest probability of precipitation you&rsquo;re willing to ride in.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="offset">Margin</label>
+            <input type="number" name="offset" id="offset" class="form-control" min="0" max="" value="{{offset}}" placeholder="Offset">
+            <p class="help-block">The amount of flexibility you have in your preferences.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="limit">Limit</label>
+            <input type="number" name="limit" id="limit" class="form-control" min="1" max="24" value="{{limit}}" placeholder="Hours offset">
+            <p class="help-block">The number of hours into the future you want to check the weather.</p>
+        </div>
+
+        <button id="submit" class="btn btn-primary js-submit">Submit</button>
+    </div>
+</div>

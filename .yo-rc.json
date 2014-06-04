@@ -1,6 +1,7 @@
 {
   "generator-backbone": {
     "appPath": "app",
+    "appName": "Bike",
     "coffee": false,
     "testFramework": "mocha",
     "templateFramework": "handlebars",

@@ -12,21 +12,21 @@ define([
         model: ForecastModel,
 
         initialize: function (options) {
-            this.location = options.location;
-
-            this.listenToOnce(this.location, 'change', this.load);
-        },
-
-        load: function () {
-            return this.fetch({ reset: true });
+            this.latitude = options.latitude;
+            this.longitude = options.longitude;
         },
 
         url: function () {
-            return 'https://api.forecast.io/forecast' + '/' + config.API_KEY + '/' + this.location.get('latitude') + ',' + this.location.get('longitude') + '?callback=?';
+            return 'https://api.forecast.io/forecast' + '/' + config.API_KEY + '/' + this.latitude + ',' + this.longitude + '?exclude=currently,minutely,daily,alerts,flags&callback=?';
         },
 
         parse: function (response) {
             return response.hourly.data;
+        },
+
+        limit: function (size) {
+            var results = this.first(size);
+            return new ForecastCollection(results);
         },
 
         compare: function (method, attribute) {
@@ -46,7 +46,7 @@ define([
         },
 
         precip: function () {
-            return this.compare('max', 'precipProbability');
+            return this.compare('max', 'precipProbability') * 100;
         }
     });
 
