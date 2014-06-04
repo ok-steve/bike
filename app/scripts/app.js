@@ -5,10 +5,13 @@ define([
     'routes/app',
     'models/answer',
     'collections/forecast',
-    'models/location'
+    'models/location',
+    'views/navbar',
+    'views/answer/show',
+    'views/answer/edit'
 ],
 
-function ($, Backbone, Utils, AppRouter, AnswerModel, ForecastCollection, LocationModel) {
+function ($, Backbone, Utils, AppRouter, AnswerModel, ForecastCollection, LocationModel, NavbarView, AnswerShowView, AnswerEditView) {
     var App = {
         start: function () {
             Utils.vent.trigger('app:initialize');
@@ -26,11 +29,8 @@ function ($, Backbone, Utils, AppRouter, AnswerModel, ForecastCollection, Locati
         App.answer = new AnswerModel();
         App.location = new LocationModel();
 
-        require(['views/navbar'], function (NavbarView) {
-            var navbar = new NavbarView();
-
-            $(App.regions.header).html(navbar.render().el);
-        });
+        var navbar = new NavbarView();
+        $(App.regions.header).html(navbar.render().el);
 
         App.location.load();
     });
@@ -52,19 +52,13 @@ function ($, Backbone, Utils, AppRouter, AnswerModel, ForecastCollection, Locati
 
         App.answer.decide(filteredCollection);
 
-        require(['views/answer/show'], function (AnswerShowView) {
-            var answerShowView = new AnswerShowView({ model: App.answer });
-
-            $(App.regions.main).html(Utils.showView(answerShowView).el);
-        });
+        var answerShowView = new AnswerShowView({ model: App.answer });
+        $(App.regions.main).html(Utils.showView(answerShowView).el);
     });
 
     Utils.vent.on('answer:edit', function () {
-        require(['views/answer/edit'], function (AnswerEditView) {
-            var answerEditView = new AnswerEditView({ model: App.answer });
-
-            $(App.regions.main).html(Utils.showView(answerEditView).el);
-        });
+        var answerEditView = new AnswerEditView({ model: App.answer });
+        $(App.regions.main).html(Utils.showView(answerEditView).el);
     });
 
     return App;
