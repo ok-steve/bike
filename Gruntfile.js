@@ -295,7 +295,7 @@ module.exports = function (grunt) {
                 'handlebars',
                 'compass:server',
                 'connect:test',
-                'open:test',
+                //'open:test',
                 'watch'
             ]);
         }

@@ -31,5 +31,13 @@ function (_, Backbone) {
         }
     };
 
+    // Enable pushState
+    $(document).on('click', 'a[href^="/"]', function (e) {
+        e.preventDefault();
+        var target = $(e.currentTarget).attr('href');
+        Backbone.history.navigate(target, { trigger: true });
+        return false;
+    });
+
     return Utils;
 });
