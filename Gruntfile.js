@@ -27,6 +27,7 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         yeoman: yeomanConfig,
+        pkg: grunt.file.readJSON('package.json'),
         watch: {
             options: {
                 nospawn: true,
@@ -273,6 +274,19 @@ module.exports = function (grunt) {
                     ]
                 }
             }
+        },
+        buildcontrol: {
+            options: {
+                dir: '<%= yeoman.dist %>',
+                commit: true,
+                push: true
+            },
+            dist: {
+                options: {
+                    remote: '<%= pkg.repository.url %>',
+                    branch: 'gh-pages'
+                }
+            }
         }
     });
 
@@ -332,6 +346,11 @@ module.exports = function (grunt) {
             return grunt.task.run(testTasks);
         }
     });
+
+    grunt.registerTask('deploy', [
+        'build',
+        'buildcontrol'
+    ]);
 
     grunt.registerTask('build', [
         'clean:dist',
