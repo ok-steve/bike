@@ -7,5 +7,6 @@
     "templateFramework": "handlebars",
     "compassBootstrap": true,
     "includeRequireJS": true
-  }
+  },
+  "generator-mocha": {}
 }

@@ -128,7 +128,7 @@ module.exports = function (grunt) {
             all: {
                 options: {
                     run: true,
-                    src: ['http://localhost:<%= connect.test.options.port %>/index.html']
+                    urls: ['http://localhost:<%= connect.test.options.port %>/index.html']
                 }
             }
         },
@@ -158,7 +158,7 @@ module.exports = function (grunt) {
                     paths: {
                         'templates': '../../.tmp/scripts/templates',
                         'jquery': '../../<%= yeoman.app %>/bower_components/jquery/dist/jquery',
-                        'underscore': '../../<%= yeoman.app %>/bower_components/underscore/underscore',
+                        'underscore': '../../<%= yeoman.app %>/bower_components/lodash/dist/lodash',
                         'backbone': '../../<%= yeoman.app %>/bower_components/backbone/backbone'
                     },
                     // TODO: Figure out how to make sourcemaps work with grunt-usemin
@@ -235,11 +235,13 @@ module.exports = function (grunt) {
                     dest: '<%= yeoman.dist %>',
                     src: [
                         '*.{ico,txt}',
-                        '.htaccess',
                         'images/{,*/}*.{webp,gif}',
                         'styles/fonts/{,*/}*.*',
                         'bower_components/sass-bootstrap/fonts/*.*'
                     ]
+                }, {
+                    src: 'node_modules/apache-server-configs/dist/.htaccess',
+                    dest: '<%= yeoman.dist %>/.htaccess'
                 }]
             }
         },
