@@ -2,13 +2,13 @@ define([
 ],
 
 function () {
-    var config = {
-        API_KEY: '',
+  var config = {
+    API_KEY: '',
 
-        LATITUDE: '',
+    LATITUDE: '',
 
-        LONGITUDE: ''
-    };
+    LONGITUDE: ''
+  };
 
-    return config;
+  return config;
 });

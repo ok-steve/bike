@@ -1,26 +1,26 @@
 /*global define*/
 
 define([
-    'jquery',
-    'backbone',
-    'utils'
+  'jquery',
+  'backbone',
+  'utils'
 ], function ($, Backbone, Utils) {
-    'use strict';
+  'use strict';
 
-    var AppRouter = Backbone.Router.extend({
-        routes: {
-            '': 'showAnswer',
-            'edit': 'editAnswer'
-        },
+  var AppRouter = Backbone.Router.extend({
+    routes: {
+      '': 'showAnswer',
+      'edit': 'editAnswer'
+    },
 
-        showAnswer: function () {
-            Utils.vent.trigger('answer:show');
-        },
+    showAnswer: function () {
+      Utils.vent.trigger('answer:show');
+    },
 
-        editAnswer: function () {
-            Utils.vent.trigger('answer:edit');
-        }
-    });
+    editAnswer: function () {
+      Utils.vent.trigger('answer:edit');
+    }
+  });
 
-    return AppRouter;
+  return AppRouter;
 });

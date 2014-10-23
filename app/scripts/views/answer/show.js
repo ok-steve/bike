@@ -1,36 +1,36 @@
 /*global define*/
 
 define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'templates'
+  'jquery',
+  'underscore',
+  'backbone',
+  'templates'
 ], function ($, _, Backbone, JST) {
-    'use strict';
+  'use strict';
 
-    var AnswerShowView = Backbone.View.extend({
-        template: JST['app/scripts/templates/answer/show.hbs'],
+  var AnswerShowView = Backbone.View.extend({
+    template: JST['app/scripts/templates/answer/show.hbs'],
 
-        tagName: 'div',
+    tagName: 'div',
 
-        id: '',
+    id: '',
 
-        className: 'jumbotron',
+    className: 'jumbotron',
 
-        events: {},
+    events: {},
 
-        initialize: function () {
-            //this.listenTo(this.model, 'change', this.render);
-        },
+    initialize: function () {
+      //this.listenTo(this.model, 'change', this.render);
+    },
 
-        render: function () {
-            $('body').removeClass('yes no maybe').addClass(this.model.get('answer'));
+    render: function () {
+      $('body').removeClass('yes no maybe').addClass(this.model.get('answer'));
 
-            this.$el.html(this.template(this.model.toJSON()));
+      this.$el.html(this.template(this.model.toJSON()));
 
-            return this;
-        }
-    });
+      return this;
+    }
+  });
 
-    return AnswerShowView;
+  return AnswerShowView;
 });

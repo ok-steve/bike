@@ -14,32 +14,32 @@
 
 .navbar-brand,
 .jumbotron h1 {
-    font-family: 'Sansita One', $font-family-sans-serif;
+  font-family: 'Sansita One', $font-family-sans-serif;
 }
 
 .jumbotron {
+  h1 {
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  .yes &,
+  .maybe &,
+  .no & {
     h1 {
-        text-align: center;
-        text-transform: capitalize;
+      color: #fff;
     }
+  }
 
-    .yes &,
-    .maybe &,
-    .no & {
-        h1 {
-            color: #fff;
-        }
-    }
+  .yes & {
+    background-color: $brand-success;
+  }
 
-    .yes & {
-        background-color: $brand-success;
-    }
+  .maybe & {
+    background-color: $brand-warning;
+  }
 
-    .maybe & {
-        background-color: $brand-warning;
-    }
-
-    .no & {
-        background-color: $brand-danger;
-    }
+  .no & {
+    background-color: $brand-danger;
+  }
 }
