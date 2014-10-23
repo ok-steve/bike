@@ -1,10 +1,4 @@
 'use strict';
-var LIVERELOAD_PORT = 35729;
-var SERVER_PORT = 9000;
-var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
-var mountFolder = function (connect, dir) {
-  return connect.static(require('path').resolve(dir));
-};
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -39,7 +33,7 @@ module.exports = function (grunt) {
       },
       livereload: {
         options: {
-          livereload: grunt.option('livereloadport') || LIVERELOAD_PORT
+          livereload: '<%= connect.options.livereload %>'
         },
         files: [
           '<%= config.app %>/*.html',
@@ -63,41 +57,41 @@ module.exports = function (grunt) {
     },
     connect: {
       options: {
-        port: grunt.option('port') || SERVER_PORT,
+        port: grunt.option('port') || 9000,
+        open: true,
+        livereload: 35729,
         // change this to '0.0.0.0' to access the server from outside
-        hostname: '0.0.0.0'
+        hostname: 'localhost'
       },
       livereload: {
         options: {
           middleware: function (connect) {
             return [
-              lrSnippet,
-              mountFolder(connect, '.tmp'),
-              mountFolder(connect, yeomanConfig.app)
+              connect.static('.tmp'),
+              connect().use('/bower_components', connect.static('./bower_components')),
+              connect.static(config.app)
             ];
           }
         }
       },
       test: {
         options: {
+          open: false,
           port: 9001,
-          middleware: function (connect) {
+          middleware: function(connect) {
             return [
-              lrSnippet,
-              mountFolder(connect, '.tmp'),
-              mountFolder(connect, 'test'),
-              mountFolder(connect, yeomanConfig.app)
+              connect.static('.tmp'),
+              connect.static('test'),
+              connect().use('/bower_components', connect.static('./bower_components')),
+              connect.static(config.app)
             ];
           }
         }
       },
       dist: {
         options: {
-          middleware: function (connect) {
-            return [
-              mountFolder(connect, yeomanConfig.dist)
-            ];
-          }
+          base: '<%= config.dist %>',
+          livereload: false
         }
       }
     },
@@ -302,12 +296,16 @@ module.exports = function (grunt) {
 
   grunt.registerTask('server', function (target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run(['serve' + (target ? ':' + target : '')]);
+    grunt.task.run([target ? ('serve:' + target) : 'serve']);
   });
 
-  grunt.registerTask('serve', function (target) {
+  grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function (target) {
+    if (grunt.option('allow-remote')) {
+      grunt.config.set('connect.options.hostname', '0.0.0.0');
+      grunt.config.set('connect.options.open', false);
+    }
     if (target === 'dist') {
-      return grunt.task.run(['build', 'open:server', 'connect:dist:keepalive']);
+      return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
 
     if (target === 'test') {
