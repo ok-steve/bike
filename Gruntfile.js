@@ -33,9 +33,9 @@ module.exports = function (grunt) {
         nospawn: true,
         livereload: true
       },
-      compass: {
+      sass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass']
+        tasks: ['sass']
       },
       livereload: {
         options: {
@@ -133,21 +133,27 @@ module.exports = function (grunt) {
         }
       }
     },
-    compass: {
+    sass: {
       options: {
-        sassDir: '<%= yeoman.app %>/styles',
-        cssDir: '.tmp/styles',
-        imagesDir: '<%= yeoman.app %>/images',
-        javascriptsDir: '<%= yeoman.app %>/scripts',
-        fontsDir: '<%= yeoman.app %>/styles/fonts',
-        importPath: 'bower_components',
-        relativeAssets: true
+        loadPath: 'bower_components'
       },
-      dist: {},
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>/styles',
+          src: ['*.{scss,sass}'],
+          dest: '.tmp/styles',
+          ext: '.css'
+        }]
+      },
       server: {
-        options: {
-          debugInfo: true
-        }
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>/styles',
+          src: ['*.{scss,sass}'],
+          dest: '.tmp/styles',
+          ext: '.css'
+        }]
       }
     },
     requirejs: {
@@ -309,7 +315,7 @@ module.exports = function (grunt) {
         'clean:server',
         'createDefaultTemplate',
         'handlebars',
-        'compass:server',
+        'sass:server',
         'connect:test',
         //'open:test',
         'watch'
@@ -320,7 +326,7 @@ module.exports = function (grunt) {
       'clean:server',
       'createDefaultTemplate',
       'handlebars',
-      'compass:server',
+      'sass:server',
       'connect:livereload',
       //'open:server',
       'watch'
@@ -333,7 +339,7 @@ module.exports = function (grunt) {
         'clean:server',
         'createDefaultTemplate',
         'handlebars',
-        'compass',
+        'sass',
         'connect:test',
         'mocha',
       ];
@@ -356,7 +362,7 @@ module.exports = function (grunt) {
     'clean:dist',
     'createDefaultTemplate',
     'handlebars',
-    'compass:dist',
+    'sass:dist',
     'useminPrepare',
     'requirejs',
     'imagemin',
