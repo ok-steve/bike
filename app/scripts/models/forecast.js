@@ -1,27 +1,27 @@
 /*global define*/
 
 define([
-    'underscore',
-    'backbone'
+  'underscore',
+  'backbone'
 ], function (_, Backbone) {
-    'use strict';
+  'use strict';
 
-    var ForecastModel = Backbone.Model.extend({
-        url: '',
+  var ForecastModel = Backbone.Model.extend({
+    url: '',
 
-        initialize: function() {
-        },
+    initialize: function() {
+    },
 
-        defaults: {
-        },
+    defaults: {
+    },
 
-        validate: function(attrs, options) {
-        },
+    validate: function(attrs, options) {
+    },
 
-        parse: function(response, options)  {
-            return response;
-        }
-    });
+    parse: function(response, options)  {
+      return response;
+    }
+  });
 
-    return ForecastModel;
+  return ForecastModel;
 });

@@ -2,29 +2,29 @@
 'use strict';
 
 require.config({
-    shim: {
-        bootstrap: {
-            deps: ['jquery'],
-            exports: 'jquery'
-        },
-        handlebars: {
-            exports: 'Handlebars'
-        }
+  shim: {
+    bootstrap: {
+      deps: ['jquery'],
+      exports: 'jquery'
     },
-    paths: {
-        jquery: '../bower_components/jquery/dist/jquery',
-        backbone: '../bower_components/backbone/backbone',
-        underscore: '../bower_components/lodash/dist/lodash',
-        bootstrap: '../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap',
-        handlebars: '../bower_components/handlebars/handlebars'
+    handlebars: {
+      exports: 'Handlebars'
     }
+  },
+  paths: {
+    jquery: '../bower_components/jquery/dist/jquery',
+    backbone: '../bower_components/backbone/backbone',
+    underscore: '../bower_components/lodash/dist/lodash',
+    bootstrap: '../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap',
+    handlebars: '../bower_components/handlebars/handlebars'
+  }
 });
 
 require([
-    'backbone',
-    'app',
-    'bootstrap'
+  'backbone',
+  'app',
+  'bootstrap'
 ], function (Backbone, App) {
-    Backbone.history.start({ pushState: true, root: '/bike/' });
-    App.start();
+  Backbone.history.start({ pushState: true, root: '/bike/' });
+  App.start();
 });
