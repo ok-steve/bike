@@ -3,25 +3,32 @@
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
-// use this if you want to match all subfolders:
+// If you want to recursively match all subfolders, use:
 // 'test/spec/**/*.js'
 // templateFramework: 'handlebars'
 
 module.exports = function (grunt) {
-  // show elapsed time at the end
+
+  // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
-  // load all grunt tasks
+
+  // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
-  // configurable paths
+  // Configurable paths
   var config = {
     app: 'app',
     dist: 'dist'
   };
 
+  // Define the configuration for all the tasks
   grunt.initConfig({
+
+    // Project settings
     config: config,
     pkg: grunt.file.readJSON('package.json'),
+
+    // Watches files for changes and runs tasks based on the changed files
     watch: {
       options: {
         nospawn: true,
@@ -55,12 +62,14 @@ module.exports = function (grunt) {
         tasks: ['test:true']
       }
     },
+
+    // The actual grunt server settings
     connect: {
       options: {
         port: grunt.option('port') || 9000,
         open: true,
         livereload: 35729,
-        // change this to '0.0.0.0' to access the server from outside
+        // Change this to '0.0.0.0' to access the server from outside
         hostname: 'localhost'
       },
       livereload: {
@@ -103,10 +112,14 @@ module.exports = function (grunt) {
         path: 'http://localhost:<%= connect.test.options.port %>'
       }
     },
+
+    // Empties folders to start fresh
     clean: {
       dist: ['.tmp', '<%= config.dist %>/*'],
       server: '.tmp'
     },
+
+    // Make sure code styles are up to par and there are no obvious mistakes
     jshint: {
       options: {
         jshintrc: '.jshintrc',
@@ -119,6 +132,8 @@ module.exports = function (grunt) {
         'test/spec/{,*/}*.js'
       ]
     },
+
+    // Mocha testing framework configuration options
     mocha: {
       all: {
         options: {
@@ -127,6 +142,8 @@ module.exports = function (grunt) {
         }
       }
     },
+
+    // Compiles Sass to CSS and generates necessary files if requested
     sass: {
       options: {
         loadPath: 'bower_components'
@@ -173,12 +190,18 @@ module.exports = function (grunt) {
         }
       }
     },
+
+    // Reads HTML for usemin blocks to enable smart builds that automatically
+    // concat, minify and revision files. Creates configurations in memory so
+    // additional tasks can operate on them
     useminPrepare: {
       html: '<%= config.app %>/index.html',
       options: {
         dest: '<%= config.dist %>'
       }
     },
+
+    // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
       html: ['<%= config.dist %>/{,*/}*.html'],
       css: ['<%= config.dist %>/styles/{,*/}*.css'],
@@ -186,6 +209,8 @@ module.exports = function (grunt) {
         dirs: ['<%= config.dist %>']
       }
     },
+
+    // The following *-min tasks produce minified files in the dist folder
     imagemin: {
       dist: {
         files: [{
@@ -227,6 +252,8 @@ module.exports = function (grunt) {
         }]
       }
     },
+
+    // Copies remaining files to places other tasks can use
     copy: {
       dist: {
         files: [{
@@ -262,6 +289,8 @@ module.exports = function (grunt) {
         }
       }
     },
+
+    // Renames files for browser caching purposes
     rev: {
       dist: {
         files: {
@@ -275,6 +304,8 @@ module.exports = function (grunt) {
         }
       }
     },
+
+    // Push dist files to a separate Git branch
     buildcontrol: {
       options: {
         dir: '<%= config.dist %>',
