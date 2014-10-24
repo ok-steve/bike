@@ -1,3 +1,4 @@
+@import "overrides";
 @import "ursatz/app/styles/ursatz/ursatz";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
@@ -11,35 +12,4 @@
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap/navs";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap/navbar";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap/jumbotron";
-
-.navbar-brand,
-.jumbotron h1 {
-  font-family: 'Sansita One', $font-family-sans-serif;
-}
-
-.jumbotron {
-  h1 {
-    text-align: center;
-    text-transform: capitalize;
-  }
-
-  .yes &,
-  .maybe &,
-  .no & {
-    h1 {
-      color: #fff;
-    }
-  }
-
-  .yes & {
-    background-color: $brand-success;
-  }
-
-  .maybe & {
-    background-color: $brand-warning;
-  }
-
-  .no & {
-    background-color: $brand-danger;
-  }
-}
+@import "themes/bootstrap";

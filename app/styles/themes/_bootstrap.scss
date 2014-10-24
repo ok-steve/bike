@@ -1,0 +1,35 @@
+// Navbar
+
+.navbar-brand {
+  font-family: 'Sansita One', $font-family-sans-serif;
+}
+
+// Jumbotron
+
+.jumbotron {
+  h1 {
+    font-family: 'Sansita One', $font-family-sans-serif;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  .yes &,
+  .maybe &,
+  .no & {
+    h1 {
+      color: #fff;
+    }
+  }
+
+  .yes & {
+    background-color: $brand-success;
+  }
+
+  .maybe & {
+    background-color: $brand-warning;
+  }
+
+  .no & {
+    background-color: $brand-danger;
+  }
+}
