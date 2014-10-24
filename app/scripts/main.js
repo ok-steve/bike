@@ -25,6 +25,6 @@ require([
   'app',
   'bootstrap'
 ], function (Backbone, App) {
-  Backbone.history.start({ pushState: true, root: '/bike/' });
+  Backbone.history.start({ });
   App.start();
 });
