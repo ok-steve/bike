@@ -30,5 +30,22 @@
 
 // Navbar
 
+.navbar-brand {
+  @extend %navbar-brand;
+}
+
 
 // Jumbotron
+
+.jumbotron {
+  @extend %jumbotron;
+  .yes & {
+    @extend %jumbotron-success;
+  }
+  .maybe & {
+    @extend %jumbotron-warning;
+  }
+  .no & {
+    @extend %jumbotron-danger;
+  }
+}

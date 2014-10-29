@@ -49,34 +49,33 @@ $font-families: (
 
 // Navbar
 
-.navbar-brand {
+%navbar-brand {
   font-family: "Sansita One", map-get($font-families, sans-serif);
 }
 
 
 // Jumbotron
 
-.jumbotron {
+%jumbotron {
   h1 {
     font-family: "Sansita One", map-get($font-families, sans-serif);
 
     text-align: center;
     text-transform: capitalize;
   }
-  .yes &,
-  .maybe &,
-  .no & {
-    h1 {
-      color: #fff;
-    }
-  }
-  .yes & {
-    background-color: map-get($colors, brand-success);
-  }
-  .maybe & {
-    background-color: map-get($colors, brand-warning);
-  }
-  .no & {
-    background-color: map-get($colors, brand-danger);
-  }
+}
+
+%jumbotron-success {
+  color: #fff;
+  background-color: map-get($colors, brand-success);
+}
+
+%jumbotron-warning {
+  color: #fff;
+  background-color: map-get($colors, brand-warning);
+}
+
+%jumbotron-danger {
+  color: #fff;
+  background-color: map-get($colors, brand-danger);
 }
