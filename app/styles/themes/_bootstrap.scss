@@ -1,18 +1,39 @@
+// Variables
+
+$colors: (
+  gray-darker:    lighten(#000, 13.5%),
+  gray-dark:      lighten(#000, 20%),
+  gray:           lighten(#000, 33.5%),
+  gray-light:     lighten(#000, 46.7%),
+  gray-lighter:   lighten(#000, 93.5%),
+
+  brand-primary:  #428bca,
+  brand-success:  #5cb85c,
+  brand-info:     #5bc0de,
+  brand-warning:  #f0ad4e,
+  brand-danger:   #d9534f
+);
+$font-families: (
+  sans-serif:   ("Helvetica Neue", Helvetica, Arial, sans-serif),
+  serif:        (Georgia, "Times New Roman", Times, serif),
+  monospace:    (Menlo, Monaco, Consolas, "Courier New", monospace)
+);
+
 // Navbar
 
 .navbar-brand {
-  font-family: 'Sansita One', $font-family-sans-serif;
+  font-family: "Sansita One", map-get($font-families, sans-serif);
 }
 
 // Jumbotron
 
 .jumbotron {
   h1 {
-    font-family: 'Sansita One', $font-family-sans-serif;
+    font-family: "Sansita One", map-get($font-families, sans-serif);
+
     text-align: center;
     text-transform: capitalize;
   }
-
   .yes &,
   .maybe &,
   .no & {
@@ -20,16 +41,13 @@
       color: #fff;
     }
   }
-
   .yes & {
-    background-color: $brand-success;
+    background-color: map-get($colors, brand-success);
   }
-
   .maybe & {
-    background-color: $brand-warning;
+    background-color: map-get($colors, brand-warning);
   }
-
   .no & {
-    background-color: $brand-danger;
+    background-color: map-get($colors, brand-danger);
   }
 }
