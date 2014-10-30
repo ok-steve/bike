@@ -3,10 +3,6 @@
 
 require.config({
   shim: {
-    bootstrap: {
-      deps: ['jquery'],
-      exports: 'jquery'
-    },
     handlebars: {
       exports: 'Handlebars'
     }
@@ -15,16 +11,18 @@ require.config({
     jquery: '../bower_components/jquery/dist/jquery',
     backbone: '../bower_components/backbone/backbone',
     underscore: '../bower_components/lodash/dist/lodash',
-    bootstrap: '../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap',
     handlebars: '../bower_components/handlebars/handlebars'
   }
 });
 
 require([
   'backbone',
-  'app',
-  'bootstrap'
+  'app'
 ], function (Backbone, App) {
   Backbone.history.start({ });
   App.start();
+
+  $('.js-toggle').click(function () {
+    $('.js-collapse').toggleClass('in');
+  })
 });

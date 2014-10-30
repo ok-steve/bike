@@ -11,11 +11,11 @@ define([
   var NavbarView = Backbone.View.extend({
     template: JST['app/scripts/templates/navbar.hbs'],
 
-    tagName: 'div',
+    tagName: 'header',
 
     id: '',
 
-    className: 'navbar navbar-inverse navbar-static-top',
+    className: '',
 
     events: {},
 
