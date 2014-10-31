@@ -36,7 +36,7 @@ module.exports = function (grunt) {
       },
       sass: {
         files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['sass:server']
+        tasks: ['sass:server', 'autoprefixer']
       },
       livereload: {
         options: {
@@ -167,6 +167,22 @@ module.exports = function (grunt) {
         }]
       }
     },
+
+    // Add vendor prefixed styles
+    autoprefixer: {
+      options: {
+        browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '.tmp/styles/',
+          src: '{,*/}*.css',
+          dest: '.tmp/styles/'
+        }]
+      }
+    },
+
     requirejs: {
       dist: {
         // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
@@ -356,6 +372,7 @@ module.exports = function (grunt) {
       'createDefaultTemplate',
       'handlebars',
       'sass:server',
+      'autoprefixer',
       'connect:livereload',
       //'open:server',
       'watch'
@@ -369,6 +386,7 @@ module.exports = function (grunt) {
         'createDefaultTemplate',
         'handlebars',
         'sass',
+        'autoprefixer',
         'connect:test',
         'mocha',
       ];
@@ -393,6 +411,7 @@ module.exports = function (grunt) {
     'handlebars',
     'sass:dist',
     'useminPrepare',
+    'autoprefixer',
     'requirejs',
     'imagemin',
     'htmlmin',

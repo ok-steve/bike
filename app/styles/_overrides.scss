@@ -6,32 +6,6 @@ $base-line-height: 20px;
 
 // Mixins
 
-@mixin placeholder() {
-  &::-moz-placeholder {
-    @content;
-    opacity: 1;
-  }
-
-  &:-ms-input-placeholder {
-    @content;
-  }
-
-  &::-webkit-input-placeholder {
-    @content;
-  }
-}
-
-@mixin box-shadow($shadow...) {
-  -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
-          box-shadow: $shadow;
-}
-
-@mixin transition($transition...) {
-  -webkit-transition: $transition;
-       -o-transition: $transition;
-          transition: $transition;
-}
-
 
 // Scaffolding
 
