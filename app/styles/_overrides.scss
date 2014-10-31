@@ -34,7 +34,7 @@ button {
 }
 
 button[type="submit"] {
-  @extend %btn--primary;
+  @extend %btn--default;
 }
 
 
@@ -53,7 +53,6 @@ button[type="submit"] {
 
 .input-group {
   @extend %input-group;
-
   > span {
     @extend %btn;
     @extend %input-group__addon;
@@ -68,21 +67,18 @@ button[type="submit"] {
 
 header {
   @extend %header;
-
   > h1 {
     @extend %header__brand;
   }
-
   > .collapse {
     @extend %header__collapse;
-
     > ul {
       @extend %nav;
       @extend %header__nav;
     }
   }
-
   > button {
+    @extend %btn--default;
     @extend %header__toggle;;
   }
 }
@@ -92,13 +88,22 @@ header {
 
 .jumbotron {
   @extend %jumbotron;
-  .yes & {
-    @extend %jumbotron-success;
-  }
-  .maybe & {
-    @extend %jumbotron-warning;
-  }
-  .no & {
-    @extend %jumbotron-danger;
-  }
+}
+
+
+// Answer
+
+.yes {
+  @extend %answer;
+  @extend %answer-success;
+}
+
+.maybe {
+  @extend %answer;
+  @extend %answer-warning;
+}
+
+.no {
+  @extend %answer;
+  @extend %answer-danger;
 }

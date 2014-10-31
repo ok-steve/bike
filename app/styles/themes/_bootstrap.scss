@@ -1,26 +1,20 @@
 // Variables
 
 $colors: (
-  gray-darker:    lighten(#000, 13.5%),
   gray-dark:      lighten(#000, 20%),
   gray:           lighten(#000, 33.5%),
   gray-light:     lighten(#000, 46.7%),
-  gray-lighter:   lighten(#000, 93.5%),
 
   brand-primary:  #428bca,
   brand-success:  #5cb85c,
-  brand-info:     #5bc0de,
   brand-warning:  #f0ad4e,
   brand-danger:   #d9534f
 );
 $font-families: (
-  sans-serif:   ("Helvetica Neue", Helvetica, Arial, sans-serif),
-  serif:        (Georgia, "Times New Roman", Times, serif),
-  monospace:    (Menlo, Monaco, Consolas, "Courier New", monospace)
+  sans-serif:   ("Helvetica Neue", Helvetica, Arial, sans-serif)
 );
 $border-radius: (
-  base: 4px,
-  large: 6px
+  base: 4px
 );
 
 
@@ -35,8 +29,21 @@ html {
   color: map-get($colors, gray-dark);
 }
 
+a {
+  color: map-get($colors, brand-primary);
+  &:hover,
+  &:focus {
+    color: darken(map-get($colors, brand-primary), 7%);
+  }
+}
+
 
 // Typography
+
+h1 {
+  font-family: "Sansita One", map-get($font-families, sans-serif);
+  font-weight: 400;
+}
 
 
 // Grid system
@@ -55,12 +62,9 @@ form {
 }
 
 %form-control {
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-
   color: map-get($colors, gray);
-  border-color: #ccc;
-  border-radius: map-get($border-radius, base);
-  box-shadow: inset 0 1px 1px rgba(#000,.075);
+  border-color: rgba(#000,.2);
+  border-radius: map-get($border-radius, base);;
   &::placeholder {
     color: map-get($colors, gray-light);
   }
@@ -68,8 +72,6 @@ form {
 
 %help-block {
   margin-top: lines(.25);
-
-  color: lighten(map-get($colors, gray-dark), 25%);
 }
 
 
@@ -77,21 +79,16 @@ form {
 
 %btn {
   border-radius: map-get($border-radius, base);
-  &:active {
-    box-shadow: inset 0 3px 5px rgba(#000,.125);
-  }
 }
 
-%btn--primary {
-  color: #fff;
-  border-color: darken(map-get($colors, brand-primary), 5%);
-  background-color: map-get($colors, brand-primary);
+%btn--default {
+  border-color: rgba(#000,.2);
+  background-color: rgba(#000,.1);
   &:hover,
   &:focus,
   &:active {
-    color: #fff;
-    border-color: darken(map-get($colors, brand-primary), 18%);
-    background-color: darken(map-get($colors, brand-primary), 10%);
+    border-color: rgba(#000,.3);
+    background-color: rgba(#000,.2);
   }
 }
 
@@ -100,7 +97,7 @@ form {
 
 %collapse {
   &%in {
-    max-height: lines(4);
+    max-height: lines(2);
   }
 }
 
@@ -109,8 +106,8 @@ form {
 
 %input-group__addon {
   color: map-get($colors, gray);
-  border-color: #ccc;
-  background-color: map-get($colors, gray-lighter);
+  border-color: rgba(#000,.2);
+  background-color: #fff;
 }
 
 
@@ -120,51 +117,23 @@ form {
 // Navbar
 
 %header {
-  padding-top: 0;
-  padding-bottom: 0;
-
-  border-bottom: 1px solid darken(map-get($colors, gray-darker), 10%);
-  background-color: map-get($colors, gray-darker);
-  a {
-    color: map-get($colors, gray-light);
-    &:hover,
-    &:focus {
-      color: #fff;
-    }
-  }
+  border-bottom: 1px solid rgba(#fff,.2);
 }
 
 %header__collapse {
-  border-top: 1px solid darken(map-get($colors, gray-darker), 7%);
-  box-shadow: inset 0 1px 0 rgba(#fff,.1);
+  margin-top: lines(.25);
+
+  border-top: 1px solid rgbe(#fff,.1);
   @media (min-width: map-get($breakpoints, md)) {
+    margin-top: 0;
+
     border-top: 0;
-    box-shadow: none;
   }
 }
 
 %header__brand {
-  font-family: "Sansita One", map-get($font-families, sans-serif);
-  font-weight: 400;
-
-  padding-right: lines(1);
-}
-
-%header__toggle {
-  color: #fff;
-  border-color: map-get($colors, gray-dark);
-  border-radius: map-get($border-radius, base);
-  background-color: transparent;
-  &:hover,
-  &:focus {
-    background-color: map-get($colors, gray-dark);
-  }
-}
-
-%header__nav {
-  > li > a {
-    padding-top: lines(1);
-    padding-bottom: lines(1);
+  @media (min-width: map-get($breakpoints, md)) {
+    padding-right: lines(1);
   }
 }
 
@@ -174,42 +143,40 @@ form {
 %jumbotron {
   display: flex;
 
-  min-height: lines(5);
-  margin-right: lines(1);
-  margin-left: lines(1);
   padding: lines(1);
 
-  border-radius: map-get($border-radius, large);
-  background-color: map-get($colors, gray-lighter);
+  text-transform: capitalize;
 
   align-items: center;
   justify-content: center;
   h1 {
-    font-family: "Sansita One", map-get($font-families, sans-serif);
-
-    text-align: center;
-    text-transform: capitalize;
+    font-size: 20vw;
+    line-height: 1.1;
   }
-  @media screen and (min-width: map-get($breakpoints, sm)) {
-    min-height: lines(15);
-    h1 {
-      font-size: ms(10);
-      line-height: line-height(ms(10));
+}
+
+
+// Answer
+
+%answer {
+  color: #fff;
+  a {
+    color: #fff;
+    &:hover,
+    &:focus {
+      color: map-get($colors, gray-light);
     }
   }
 }
 
-%jumbotron-success {
-  color: #fff;
+%answer-success {
   background-color: map-get($colors, brand-success);
 }
 
-%jumbotron-warning {
-  color: #fff;
+%answer-warning {
   background-color: map-get($colors, brand-warning);
 }
 
-%jumbotron-danger {
-  color: #fff;
+%answer-danger {
   background-color: map-get($colors, brand-danger);
 }
