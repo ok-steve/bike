@@ -38,6 +38,11 @@ html {
 
 // Typography
 
+h1 {
+  font-family: "Sansita One", map-get($font-families, sans-serif);
+  font-weight: 400;
+}
+
 
 // Grid system
 
@@ -174,42 +179,40 @@ form {
 %jumbotron {
   display: flex;
 
-  min-height: lines(5);
-  margin-right: lines(1);
-  margin-left: lines(1);
   padding: lines(1);
 
-  border-radius: map-get($border-radius, large);
-  background-color: map-get($colors, gray-lighter);
+  text-transform: capitalize;
 
   align-items: center;
   justify-content: center;
   h1 {
-    font-family: "Sansita One", map-get($font-families, sans-serif);
-
-    text-align: center;
-    text-transform: capitalize;
+    font-size: 20vw;
+    line-height: 1.1;
   }
-  @media screen and (min-width: map-get($breakpoints, sm)) {
-    min-height: lines(15);
-    h1 {
-      font-size: ms(10);
-      line-height: line-height(ms(10));
+}
+
+
+// Answer
+
+%answer {
+  color: #fff;
+  a {
+    color: #fff;
+    &:hover,
+    &:focus {
+      color: map-get($colors, gray-lighter);
     }
   }
 }
 
-%jumbotron-success {
-  color: #fff;
+%answer-success {
   background-color: map-get($colors, brand-success);
 }
 
-%jumbotron-warning {
-  color: #fff;
+%answer-warning {
   background-color: map-get($colors, brand-warning);
 }
 
-%jumbotron-danger {
-  color: #fff;
+%answer-danger {
   background-color: map-get($colors, brand-danger);
 }
