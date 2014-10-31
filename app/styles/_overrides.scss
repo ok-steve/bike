@@ -34,7 +34,7 @@ button {
 }
 
 button[type="submit"] {
-  @extend %btn--primary;
+  @extend %btn--default;
 }
 
 
@@ -78,6 +78,7 @@ header {
     }
   }
   > button {
+    @extend %btn--default;
     @extend %header__toggle;;
   }
 }
