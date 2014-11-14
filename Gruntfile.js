@@ -331,7 +331,8 @@ module.exports = function (grunt) {
       dist: {
         options: {
           remote: '<%= pkg.repository.url %>',
-          branch: 'gh-pages'
+          branch: 'gh-pages',
+          tag: '<%= pkg.version %>+<%= grunt.template.today("yyyymmdd") %>'
         }
       }
     }
