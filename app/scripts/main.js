@@ -24,5 +24,5 @@ require([
 
   $('.js-toggle').click(function () {
     $('.js-collapse').toggleClass('in');
-  })
+  });
 });

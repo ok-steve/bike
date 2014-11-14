@@ -79,7 +79,7 @@ header {
   }
   > button {
     @extend %btn--default;
-    @extend %header__toggle;;
+    @extend %header__toggle;
   }
 }
 
