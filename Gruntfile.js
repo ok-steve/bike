@@ -281,7 +281,8 @@ module.exports = function (grunt) {
             '*.{ico,txt}',
             'images/{,*/}*.{webp,gif}',
             'styles/fonts/{,*/}*.*',
-            'bower_components/bootstrap-sass-official/fonts/*.*'
+            'bower_components/bootstrap-sass-official/fonts/*.*',
+            'CNAME'
           ]
         }, {
           src: 'node_modules/apache-server-configs/dist/.htaccess',
