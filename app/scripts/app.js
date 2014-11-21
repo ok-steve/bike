@@ -8,10 +8,11 @@ define([
   'models/location',
   'views/navbar',
   'views/answer/show',
-  'views/answer/edit'
+  'views/answer/edit',
+  'views/loading'
 ],
 
-function ($, Backbone, Utils, AppRouter, AnswerModel, ForecastCollection, LocationModel, NavbarView, AnswerShowView, AnswerEditView) {
+function ($, Backbone, Utils, AppRouter, AnswerModel, ForecastCollection, LocationModel, NavbarView, AnswerShowView, AnswerEditView, LoadingView) {
   var App = {
     start: function () {
       Utils.vent.trigger('app:initialize');
@@ -29,8 +30,11 @@ function ($, Backbone, Utils, AppRouter, AnswerModel, ForecastCollection, Locati
     App.answer = new AnswerModel();
     App.location = new LocationModel();
 
-    var navbar = new NavbarView();
+    var navbar = new NavbarView(),
+      loading = new LoadingView();
+
     $(App.regions.header).html(navbar.render().el);
+    $(App.regions.main).html(loading.render().el);
 
     App.location.load();
   });

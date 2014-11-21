@@ -180,3 +180,7 @@ form {
 %answer-danger {
   background-color: map-get($colors, brand-danger);
 }
+
+.loading {
+  text-align: center;
+}
