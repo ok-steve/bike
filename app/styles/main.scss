@@ -3,6 +3,8 @@
 //@import "theme";
 
 .jumbotron {
+  text-transform: capitalize;
+
   .no & {
     background-color: red;
   }
