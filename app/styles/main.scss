@@ -1,3 +1,17 @@
-@import "overrides";
-@import "ursatz/app/styles/ursatz/ursatz";
-@import "themes/bootstrap";
+//@import "overrides";
+//@import "ursatz/app/styles/ursatz/ursatz";
+//@import "theme";
+
+.jumbotron {
+  .no & {
+    background-color: red;
+  }
+
+  .maybe & {
+    background-color: yellow;
+  }
+
+  .yes & {
+    background-color: green;
+  }
+}

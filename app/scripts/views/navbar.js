@@ -15,7 +15,7 @@ define([
 
     id: '',
 
-    className: '',
+    className: 'navbar navbar-inverse navbar-static-top',
 
     events: {},
 
