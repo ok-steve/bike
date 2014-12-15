@@ -1,7 +1,22 @@
 // Variables
 
-$base-font-size: 14px;
-$base-line-height: 20px;
+$settings: (
+  font-size: (
+    ratio: 1.25,
+    base: 14px
+  ),
+
+  line-height: (
+    base: 24px
+  ),
+
+  breakpoints: (
+    xs: false,
+    sm: 35rem,
+    md: 52rem,
+    lg: 69rem
+  )
+);
 
 
 // Mixins
@@ -18,44 +33,41 @@ $base-line-height: 20px;
 
 // Forms
 
-input[type="number"] {
-  @extend %form-control;
-}
-
 .help-block {
-  @extend %help-block;
+  @extend %Form_help;
 }
 
 
 // Buttons
 
 button {
-  @extend %btn;
+  @extend %Button;
 }
 
 button[type="submit"] {
-  @extend %btn--default;
+  @extend %Button-default;
 }
 
 
 // Component animations
 
 .collapse {
-  @extend %collapse;
+  @extend %Collapse;
 }
 
 .in {
-  @extend %in;
+  @extend %is-expanded;
 }
 
 
 // Input groups
 
 .input-group {
-  @extend %input-group;
+  @extend %InputGroup;
+
   > span {
-    @extend %btn;
-    @extend %input-group__addon;
+    @extend %Button;
+    @extend %InputGroup_addon;
   }
 }
 
@@ -66,20 +78,24 @@ button[type="submit"] {
 // Navbar
 
 header {
-  @extend %header;
+  @extend %Banner;
+
   > h1 {
-    @extend %header__brand;
+    @extend %Banner_brand;
   }
+
   > .collapse {
-    @extend %header__collapse;
+    @extend %Banner_collapse;
+
     > ul {
-      @extend %nav;
-      @extend %header__nav;
+      @extend %Nav;
+      //@extend %Banner_nav;
     }
   }
+
   > button {
-    @extend %btn--default;
-    @extend %header__toggle;
+    @extend %Button-default;
+    @extend %Banner_toggle;
   }
 }
 
@@ -87,7 +103,7 @@ header {
 // Jumbotron
 
 .jumbotron {
-  @extend %jumbotron;
+  @extend %Hero;
 }
 
 

@@ -1,20 +1,24 @@
 // Variables
 
-$colors: (
-  gray-dark:      lighten(#000, 20%),
-  gray:           lighten(#000, 33.5%),
-  gray-light:     lighten(#000, 46.7%),
+$theme: (
+  colors: (
+    gray-dark:      lighten(#000, 20%),
+    gray:           lighten(#000, 33.5%),
+    gray-light:     lighten(#000, 46.7%),
 
-  brand-primary:  #428bca,
-  brand-success:  #5cb85c,
-  brand-warning:  #f0ad4e,
-  brand-danger:   #d9534f
-);
-$font-families: (
-  sans-serif:   ("Helvetica Neue", Helvetica, Arial, sans-serif)
-);
-$border-radius: (
-  base: 4px
+    brand-primary:  #428bca,
+    brand-success:  #5cb85c,
+    brand-warning:  #f0ad4e,
+    brand-danger:   #d9534f
+  ),
+
+  font-families: (
+    sans-serif:   ("Helvetica Neue", Helvetica, Arial, sans-serif)
+  ),
+
+  border-radius: (
+    base: 4px
+  )
 );
 
 
@@ -24,16 +28,17 @@ $border-radius: (
 // Scaffolding
 
 html {
-  font-family: map-get($font-families, sans-serif);
+  font-family: config($theme, font-families, sans-serif);
 
-  color: map-get($colors, gray-dark);
+  color: config($theme, colors, gray-dark);
 }
 
 a {
-  color: map-get($colors, brand-primary);
+  color: config($theme, colors, brand-primary);
+
   &:hover,
   &:focus {
-    color: darken(map-get($colors, brand-primary), 7%);
+    color: darken(config($theme, colors, brand-primary), 7%);
   }
 }
 
@@ -41,7 +46,7 @@ a {
 // Typography
 
 h1 {
-  font-family: "Sansita One", map-get($font-families, sans-serif);
+  font-family: "Sansita One", config($theme, font-families, sans-serif);
   font-weight: 400;
 }
 
@@ -56,34 +61,37 @@ form {
   margin-left: auto;
   padding-right: lines(1);
   padding-left: lines(1);
-  @media (min-width: map-get($breakpoints, sm)) {
+
+  @media (min-width: config($settings, breakpoints, sm)) {
     width: percentage(1 / 3);
   }
 }
 
-%form-control {
-  color: map-get($colors, gray);
+%Form_input {
+  color: config($theme, colors, gray);
   border-color: rgba(#000,.2);
-  border-radius: map-get($border-radius, base);;
+  border-radius: config($theme, border-radius, base);
+
   &::placeholder {
-    color: map-get($colors, gray-light);
+    color: config($theme, colors, gray-light);
   }
 }
 
-%help-block {
+%Form_help {
   margin-top: lines(.25);
 }
 
 
 // Buttons
 
-%btn {
-  border-radius: map-get($border-radius, base);
+%Button {
+  border-radius: config($theme, border-radius, base);
 }
 
-%btn--default {
+%Button-default {
   border-color: rgba(#000,.2);
   background-color: rgba(#000,.1);
+
   &:hover,
   &:focus,
   &:active {
@@ -105,7 +113,7 @@ form {
 // Input groups
 
 %input-group__addon {
-  color: map-get($colors, gray);
+  color: config($theme, colors, gray);
   border-color: rgba(#000,.2);
   background-color: #fff;
 }
@@ -124,7 +132,8 @@ form {
   margin-top: lines(.25);
 
   border-top: 1px solid rgbe(#fff,.1);
-  @media (min-width: map-get($breakpoints, md)) {
+
+  @media (min-width: config($settings, breakpoints, md)) {
     margin-top: 0;
 
     border-top: 0;
@@ -132,7 +141,7 @@ form {
 }
 
 %header__brand {
-  @media (min-width: map-get($breakpoints, md)) {
+  @media (min-width: config($settings, breakpoints, md)) {
     padding-right: lines(1);
   }
 }
@@ -149,6 +158,7 @@ form {
 
   align-items: center;
   justify-content: center;
+
   h1 {
     font-size: 20vw;
     line-height: 1.1;
@@ -160,25 +170,27 @@ form {
 
 %answer {
   color: #fff;
+
   a {
     color: #fff;
+
     &:hover,
     &:focus {
-      color: map-get($colors, gray-light);
+      color: config($theme, colors, gray-light);
     }
   }
 }
 
 %answer-success {
-  background-color: map-get($colors, brand-success);
+  background-color: config($theme, colors, brand-success);
 }
 
 %answer-warning {
-  background-color: map-get($colors, brand-warning);
+  background-color: config($theme, colors, brand-warning);
 }
 
 %answer-danger {
-  background-color: map-get($colors, brand-danger);
+  background-color: config($theme, colors, brand-danger);
 }
 
 .loading {
