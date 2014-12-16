@@ -16,13 +16,13 @@
       precip: 20
     };
 
-    this.setAnswer = function () { // TODO - make the defaule maybe
+    this.setAnswer = function () {
       if (this.forecast.high <= this.preferences.high && this.forecast.low >= this.preferences.low && this.forecast.precip <= this.preferences.precip) {
         return 'yes'
-      } else if (this.forecast.high <= this.preferences.high + this.preferences.offset && this.forecast.low >= this.preferences.low - this.preferences.offset && this.forecast.precip <= this.preferences.precip + this.preferences.offset) {
-        return 'maybe'
-      } else {
+      } else if (this.forecast.high > this.preferences.high + this.preferences.offset && this.forecast.low < this.preferences.low - this.preferences.offset && this.forecast.precip > this.preferences.precip + this.preferences.offset) {
         return 'no'
+      } else {
+        return 'maybe'
       }
     };
   });
