@@ -1,14 +1,11 @@
-define([
-],
+(function () {
+  var app = angular.module('config', []);
 
-function () {
-  var config = {
+  app.constant('config', {
     API_KEY: '',
 
     LATITUDE: '',
 
     LONGITUDE: ''
-  };
-
-  return config;
-});
+  });
+})();
