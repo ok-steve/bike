@@ -1,4 +1,4 @@
-(function ($) {
+(function () {
   var app = angular.module('answer', ['settings', 'forecast']);
 
   app.controller('AnswerController', [function () {
@@ -16,7 +16,7 @@
       precip: 20
     };
 
-    this.setAnswer = function () {
+    this.setAnswer = function () { // TODO - make the defaule maybe
       if (this.forecast.high <= this.preferences.high && this.forecast.low >= this.preferences.low && this.forecast.precip <= this.preferences.precip) {
         return 'yes'
       } else if (this.forecast.high <= this.preferences.high + this.preferences.offset && this.forecast.low >= this.preferences.low - this.preferences.offset && this.forecast.precip <= this.preferences.precip + this.preferences.offset) {
@@ -26,8 +26,4 @@
       }
     };
   }]);
-
-  $('.js-toggle').click(function () {
-    $('.js-collapse').toggleClass('in');
-  });
-})(jQuery);
+})();

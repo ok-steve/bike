@@ -1,10 +1,10 @@
-(function ($, _) {
+(function (_) {
   var app = angular.module('forecast', ['config']);
 
   app.controller('ForecastController', ['$http', 'config', function ($http, config) {
     var self = this;
 
-    this.forecast = {};
+    this.forecast = {}; // TODO - share data with AnswerController
 
     this.setForecast = function (hours) {
       this.forecast = {
@@ -40,4 +40,4 @@
       self.pullData(config.LATITUDE, config.LONGITUDE);
     }
   }]);
-})(jQuery, _);
+})(_);
