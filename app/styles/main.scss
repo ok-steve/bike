@@ -1,19 +1,2 @@
-//@import "overrides";
-//@import "ursatz/app/styles/ursatz/ursatz";
-//@import "theme";
-
-.jumbotron {
-  text-transform: capitalize;
-
-  .no & {
-    background-color: red;
-  }
-
-  .maybe & {
-    background-color: yellow;
-  }
-
-  .yes & {
-    background-color: green;
-  }
-}
+@import "ursatz/app/styles/ursatz/ursatz";
+@import "theme";

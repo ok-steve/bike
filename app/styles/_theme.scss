@@ -1,3 +1,7 @@
+// Meta
+// -------------------------------------------------------------------------
+
+
 // Variables
 
 $theme: (
@@ -22,49 +26,49 @@ $theme: (
 );
 
 
-// Mixins
+// Atoms
+// -------------------------------------------------------------------------
 
 
-// Scaffolding
+// Global
 
 html {
   font-family: config($theme, font-families, sans-serif);
 
+  overflow: hidden;
+
   color: config($theme, colors, gray-dark);
 }
 
-a {
-  color: config($theme, colors, brand-primary);
 
-  &:hover,
-  &:focus {
-    color: darken(config($theme, colors, brand-primary), 7%);
-  }
-}
-
-
-// Typography
+// Text
 
 h1 {
   font-family: "Sansita One", config($theme, font-families, sans-serif);
+  font-size: 20vw;
   font-weight: 400;
+
+  text-transform: capitalize;
 }
 
 
-// Grid system
+// Embed
+
+.Icon {
+  @extend %Icon;
+}
+
+.Icon-settings {
+  &:before {
+    content: "\f013";
+  }
+}
 
 
 // Forms
 
 form {
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: lines(1);
-  padding-left: lines(1);
 
-  @media (min-width: config($settings, breakpoints, sm)) {
-    width: percentage(1 / 3);
-  }
 }
 
 %Form_input {
@@ -77,18 +81,24 @@ form {
   }
 }
 
-%Form_help {
+.Form_help {
+  font-size: ms(-1);
+
   margin-top: lines(.25);
 }
 
 
 // Buttons
 
-%Button {
+button {
   border-radius: config($theme, border-radius, base);
+
+  @extend %Button;
 }
 
-%Button-default {
+button[type="submit"] {
+  margin-top: lines(.5);
+
   border-color: rgba(#000,.2);
   background-color: rgba(#000,.1);
 
@@ -100,99 +110,115 @@ form {
   }
 }
 
+.Button-link {
+  color: #fff;
+  border: 0;
+  background-color: transparent;
+}
 
-// Component animations
+.Button-large {
+  font-size: ms(2);
+}
 
-%collapse {
-  &%in {
-    max-height: lines(2);
+
+// Molecules
+// -------------------------------------------------------------------------
+
+// Forms
+
+.InputGroup {
+  @extend %InputGroup;
+
+  > span {
+    color: config($theme, colors, gray);
+    border-color: rgba(#000,.2);
+    border-top-right-radius: config($theme, border-radius, base);
+    border-bottom-right-radius: config($theme, border-radius, base);
+    background-color: #fff;
+
+    @extend %Button;
+    @extend %InputGroup_addon;
   }
 }
-
-
-// Input groups
-
-%input-group__addon {
-  color: config($theme, colors, gray);
-  border-color: rgba(#000,.2);
-  background-color: #fff;
-}
-
-
-// Navs
 
 
 // Navbar
 
-%header {
-  border-bottom: 1px solid rgba(#fff,.2);
-}
+.Navbar { }
 
-%header__collapse {
-  margin-top: lines(.25);
-
-  border-top: 1px solid rgbe(#fff,.1);
-
-  @media (min-width: config($settings, breakpoints, md)) {
-    margin-top: 0;
-
-    border-top: 0;
-  }
-}
-
-%header__brand {
-  @media (min-width: config($settings, breakpoints, md)) {
-    padding-right: lines(1);
-  }
-}
-
-
-// Jumbotron
-
-%jumbotron {
-  display: flex;
-
-  padding: lines(1);
-
-  text-transform: capitalize;
-
-  align-items: center;
-  justify-content: center;
-
-  h1 {
-    font-size: 20vw;
-    line-height: 1.1;
-  }
+.Navbar-fixedTop {
+  position: fixed;
+  top: 0;
+  z-index: 100;
 }
 
 
 // Answer
 
-%answer {
-  color: #fff;
-
-  a {
+.Answer {
+  [role="main"] {
     color: #fff;
-
-    &:hover,
-    &:focus {
-      color: config($theme, colors, gray-light);
-    }
   }
 }
 
-%answer-success {
+.Answer-yes {
   background-color: config($theme, colors, brand-success);
 }
 
-%answer-warning {
+.Answer-maybe {
   background-color: config($theme, colors, brand-warning);
 }
 
-%answer-danger {
+.Answer-no {
   background-color: config($theme, colors, brand-danger);
 }
+
+
+// TODO - add loading view
 
 .loading {
   text-align: center;
 }
+
+
+// Organisms
+// -------------------------------------------------------------------------
+
+
+// Off canvas
+
+.OffCanvas {
+  position: relative;
+  left: 0;
+
+  [role="complementary"] {
+    left: -100%;
+  }
+
+  &.is-active {
+    [role="complementary"] {
+      left: 10%;
+    }
+  }
+}
+
+[role="main"] {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+[role="complementary"] {
+  margin-top: 42px;
+  position: absolute;
+  top: 0;
+  width: 80%;
+  transition: left .25s ease-out;
+  background-color: #fff;
+  padding: lines(1);
+  box-shadow: 0 5px 5px 1px rgba(#000,.5);
+}
+
+
