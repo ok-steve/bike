@@ -1,7 +1,7 @@
 (function () {
   var app = angular.module('answer', ['settings', 'forecast']);
 
-  app.controller('AnswerController', [function () {
+  app.controller('AnswerController', function () {
     this.preferences = { // TODO - Initialize this data from SettingsController
       high: 90,
       low: 50,
@@ -25,5 +25,5 @@
         return 'no'
       }
     };
-  }]);
+  });
 })();
