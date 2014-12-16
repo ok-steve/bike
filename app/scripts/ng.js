@@ -4,13 +4,11 @@
   app.controller('AnswerController', ['$http', 'config', function ($http, config) {
     var that = this;
 
-    this.forecast = [];
+    this.forecast = {};
 
     this.preferences = preferences;
 
-    $http.jsonp('https://api.forecast.io/forecast/' + config.API_KEY + '/' + config.LATITUDE + ',' + config.LONGITUDE + '?exclude=currently,minutely,daily,alerts,flags').success(function (data) {
-
-      console.log(data.latitude);
+    $http.jsonp('https://api.forecast.io/forecast/' + config.API_KEY + '/' + config.LATITUDE + ',' + config.LONGITUDE + '?exclude=currently,minutely,daily,alerts,flags&callback=JSONP_CALLBACK').success(function (data) {
       that.forecast = data;
     });
 
