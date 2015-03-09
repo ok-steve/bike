@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" ng-app="answer">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,15 +18,55 @@
     <script src="bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
   </head>
-  <body>
+  <body ng-controller="AnswerController as answerCtrl" class="Answer Answer-{{ answerCtrl.setAnswer() }}">
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <div class="Navbar Navbar-fixedTop">
+      <button class="js-OffCanvas Button-link Button-large"><span class="Icon Icon-settings"></span></button>
+    </div>
 
-    <div id="header-region"></div>
-    <div id="main-region"></div>
+    <div class="OffCanvas js-OffCanvas_target">
+      <div role="main">
+        <h1>{{ answerCtrl.setAnswer() }}!</h1>
+      </div>
 
+      <div role="complementary">
+        <form name="settingsForm" ng-controller="SettingsController as settingsCtrl" ng-submit="settingsForm.$valid && settingsCtrl.editPrefs(answerCtrl)" novalidate>
+          <label for="high">High</label>
+          <div class="InputGroup">
+            <input type="number" id="high" min="0" max="100" ng-model="settingsCtrl.preferences.high" required>
+            <span>&deg;</span>
+          </div>
+          <p class="Form_help">The hottest temperature you&rsquo;re willing to ride in.</p>
+
+          <label for="low">Low</label>
+          <div class="InputGroup">
+            <input type="number" id="low" min="0" max="100" ng-model="settingsCtrl.preferences.low" required>
+            <span>&deg;</span>
+          </div>
+          <p class="Form_help">The coldest temperature you&rsquo;re willing to ride in.</p>
+
+          <label for="precip">Precipitation</label>
+          <div class="InputGroup">
+            <input type="number" id="precip" min="0" max="100" ng-model="settingsCtrl.preferences.precip" required>
+            <span>%</span>
+          </div>
+          <p class="Form_help">The highest probability of precipitation you&rsquo;re willing to ride in.</p>
+
+          <label for="offset">Margin</label>
+          <input type="number" id="offset" min="0" ng-model="settingsCtrl.preferences.offset" required>
+          <p class="Form_help">The amount of flexibility you have in your preferences.</p>
+
+          <label for="limit">Limit</label>
+          <input type="number" id="limit" min="1" max="24" ng-model="settingsCtrl.preferences.limit" required>
+          <p class="Form_help">The number of hours into the future you want to check the weather.</p>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
@@ -38,8 +78,19 @@
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
 
+    <!-- build:js scripts/vendor.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+    <!-- endbuild -->
+
     <!-- build:js scripts/main.js -->
-    <script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
+    <script src="scripts/answer.js"></script>
+    <script src="scripts/settings.js"></script>
+    <script src="scripts/forecast.js"></script>
+    <script src="scripts/config.js"></script>
+
+    <script src="scripts/utils.js"></script>
     <!-- endbuild -->
 </body>
 </html>
