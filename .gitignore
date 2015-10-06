@@ -1,7 +1,1 @@
-node_modules
-dist
-.tmp
-test/temp
-.sass-cache
-bower_components
 config.js
