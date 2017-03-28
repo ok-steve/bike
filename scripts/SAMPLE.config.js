@@ -1,11 +1,9 @@
-(function () {
-  var app = angular.module('config', []);
+(function( root ) {
+  'use strict';
 
-  app.constant('config', {
+  root.config = {
     API_KEY: '',
-
     LATITUDE: '',
-
     LONGITUDE: ''
-  });
-})();
+  };
+})( window );
